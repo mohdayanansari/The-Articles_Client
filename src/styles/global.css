@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* font-family: 'Inter', sans-serif; */
+
+.my-font {
+  font-family: "Inter", sans-serif;
+}
+
+/* !RESPONSIVE */
+
+@media only screen and (max-width: 700px) {
+  .hide {
+    display: none !important;
+  }
+  .marginTop {
+    margin-top: 10px !important;
+  }
+  .phone {
+    font-size: 40px;
+  }
+  .phone-padding {
+    padding: 10px 15px 10px 15px !important;
+  }
+}
