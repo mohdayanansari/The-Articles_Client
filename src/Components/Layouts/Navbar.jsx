@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import logo from "../../Assets/thelogo.png";
+import { UserContext } from "../../App";
+import { useContext } from "react";
 
 function BootLink({ linkName, linkURL }) {
   return (
@@ -14,6 +16,39 @@ function BootLink({ linkName, linkURL }) {
 }
 
 const Navbar = () => {
+  const { state, dispatch } = useContext(UserContext);
+
+  const RenderMenu = () => {
+    if (state) {
+      return (
+        <>
+          <li className="nav-item active">
+            <Link className="nav-link" to="/">
+              Home <span className="sr-only">(current)</span>
+            </Link>
+          </li>
+          <BootLink linkName="About" linkURL="about" />
+          <BootLink linkName="Contact" linkURL="contact" />
+          <BootLink linkName="Logout" linkURL="logout" />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <li className="nav-item active">
+            <Link className="nav-link" to="/">
+              Home <span className="sr-only">(current)</span>
+            </Link>
+          </li>
+          <BootLink linkName="About" linkURL="about" />
+          <BootLink linkName="Contact" linkURL="contact" />
+          <BootLink linkName="Login" linkURL="login" />
+          <BootLink linkName="Registration" linkURL="signup" />
+        </>
+      );
+    }
+  };
+
   return (
     <>
       <nav className="fixed z-50 w-full navbar navbar-expand-lg navbar-dark bg-dark">
@@ -34,15 +69,7 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="ml-auto navbar-nav">
-            <li className="nav-item active">
-              <Link className="nav-link" to="/">
-                Home <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-            <BootLink linkName="About" linkURL="about" />
-            <BootLink linkName="Contact" linkURL="contact" />
-            <BootLink linkName="Login" linkURL="login" />
-            <BootLink linkName="Registration" linkURL="signup" />
+            <RenderMenu />
           </ul>
         </div>
       </nav>
